@@ -1,0 +1,2 @@
+# myproject
+Minimal Api projesidir.
