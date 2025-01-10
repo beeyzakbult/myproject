@@ -1,0 +1,27 @@
+﻿version: '3.9'
+
+services:
+  myprojectapp:
+    container_name: myprojectapp
+    image: beyzanur/myprojectapp/1.0
+    build: .
+    ports:
+      - "8080:80"
+    environment: 
+      ConnetcionStrings_DefaultConnection: "Server=127.0.0.1; Port=5432; Database=myproject; Username=postgres; Password=123456"
+    depends_on: 
+      - db  
+  db:
+    container_name: db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: postgres
+      POSTGRES_DB: myproject
+    volumes:
+      - pgdata:/var/lib/postgres/data 
+
+volumes:
+  pgdata: {}
